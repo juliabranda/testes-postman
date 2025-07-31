@@ -1,22 +1,23 @@
 # testes-postman
-Este projeto contém exemplos simples de requisições usando o Postman
+Este projeto contém uma coleção de testes básicos para a API pública [JSONPlaceholder](https://jsonplaceholder.typicode.com), criada no Postman. O objetivo é validar o funcionamento de endpoints REST usando scripts simples de teste.
 
-O que foi testado:
-- GET: Busca de posts
-- POST: Criação de um novo post
+Endpoints testados:
+GET /posts
+- Verifica se o status da resposta é `200 OK`
+- Confirma que a resposta contém uma lista de posts
 
-Testes automatizados:
-Cada requisição inclui scripts de teste (`Tests`) utilizando `pm.test()` para verificar:
+POST /posts
+- Verifica se o status da resposta é `201 Created`
+- Confirma que o corpo da resposta contém o campo `id`
+- Valida se o título do post criado está correto
 
-- Status code da resposta
-- Estrutura do JSON retornado
+Ferramentas utilizadas:
+- Postman
+- Scripts de teste com `pm.test`
+- API JSONPlaceholder
 
-Como usar:
-1. Baixe ou clone este repositório.
-2. Importe o arquivo `Testes_APIs_Básicos.json` no Postman.
-3. Execute os testes.
+Arquivo incluído:
+- api-tests-julia.postman_collection.json: coleção com os testes automatizados
 
-Sobre a API usada:
-[JSONPlaceholder](https://jsonplaceholder.typicode.com), (uma API fake gratuita).
-
-Criado por Julia Rodrigues_QA
+Julia Rodrigues 
+Analista de Qualidade de Software.
