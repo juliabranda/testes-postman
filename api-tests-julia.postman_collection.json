@@ -1,0 +1,99 @@
+{
+    "info": {
+        "_postman_id": "c8200ae3-31a5-4b3f-97f3-5c1e26043ee7",
+        "name": "Testes APIs B\u00e1sicos - Julia QA",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "GET - Lista de Posts",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "https://jsonplaceholder.typicode.com/posts",
+                    "protocol": "https",
+                    "host": [
+                        "jsonplaceholder",
+                        "typicode",
+                        "com"
+                    ],
+                    "path": [
+                        "posts"
+                    ]
+                }
+            },
+            "response": [],
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [
+                            "pm.test(\"Status code \u00e9 200\", function () {",
+                            "    pm.response.to.have.status(200);",
+                            "});",
+                            "",
+                            "pm.test(\"Retorna uma lista de posts\", function () {",
+                            "    var jsonData = pm.response.json();",
+                            "    pm.expect(jsonData.length).to.be.above(0);",
+                            "});"
+                        ],
+                        "type": "text/javascript"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "POST - Criar Post",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"title\": \"Como automatizar testes com Postman\",\n    \"body\": \"Este post explica como usar vari\\u00e1veis e scripts no Postman para validar APIs REST.\",\n    \"userId\": 7\n}"
+                },
+                "url": {
+                    "raw": "https://jsonplaceholder.typicode.com/posts",
+                    "protocol": "https",
+                    "host": [
+                        "jsonplaceholder",
+                        "typicode",
+                        "com"
+                    ],
+                    "path": [
+                        "posts"
+                    ]
+                }
+            },
+            "response": [],
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [
+                            "pm.test(\"Status code \u00e9 201 (Criado)\", function () {",
+                            "    pm.response.to.have.status(201);",
+                            "});",
+                            "",
+                            "pm.test(\"Resposta cont\u00e9m o ID do novo post\", function () {",
+                            "    var jsonData = pm.response.json();",
+                            "    pm.expect(jsonData).to.have.property(\"id\");",
+                            "});",
+                            "",
+                            "pm.test(\"Verifica o t\u00edtulo do post criado\", function () {",
+                            "    var jsonData = pm.response.json();",
+                            "    pm.expect(jsonData.title).to.eql(\"Como automatizar testes com Postman\");",
+                            "});"
+                        ],
+                        "type": "text/javascript"
+                    }
+                }
+            ]
+        }
+    ]
+}
